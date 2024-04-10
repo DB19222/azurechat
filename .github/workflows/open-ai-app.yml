@@ -82,18 +82,18 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            rg=$(az webapp list --query "[?name=='chatgptwithdocsandimage-webapp-t5vudfb2m74oe'].resourceGroup" --output tsv)
-            echo Setting SCM_DO_BUILD_DURING_DEPLOYMENT=false on app service chatgptwithdocsandimage-webapp-t5vudfb2m74oe
-            az webapp config appsettings set -n chatgptwithdocsandimage-webapp-t5vudfb2m74oe -g $rg --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
-            echo Setting --startup-file=\"node server.js\" on app service chatgptwithdocsandimage-webapp-t5vudfb2m74oe
-            az webapp config set --startup-file="node server.js" -n chatgptwithdocsandimage-webapp-t5vudfb2m74oe -g $rg -o none
+            rg=$(az webapp list --query "[?name=='tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6'].resourceGroup" --output tsv)
+            echo Setting SCM_DO_BUILD_DURING_DEPLOYMENT=false on app service tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6
+            az webapp config appsettings set -n tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6 -g $rg --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
+            echo Setting --startup-file=\"node server.js\" on app service tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6
+            az webapp config set --startup-file="node server.js" -n tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6 -g $rg -o none
             sleep 10
 
       - name: 🚀 Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: chatgptwithdocsandimage-webapp-t5vudfb2m74oe
+          app-name: tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6
           package: ${{ github.workspace }}/Nextjs-site.zip
 
       - name: 🧹 Cleanup
